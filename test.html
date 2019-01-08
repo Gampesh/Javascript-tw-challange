@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <script>
+        function twChallangeInput4() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var resData = this.responseText;
+                    console.log(this.responseText);
+                    var now = new Date();
+                    var toDate = now.valueOf();
+                    var totalValue = 0;
+                    var jsonData = JSON.parse(resData);
+                    jsonData.forEach(function(element) {
+
+                        var sDate = new Date(element.startDate);
+                        var startDate = sDate.valueOf();
+
+                        var eDate = new Date(element.endDate);
+                        var endDate = eDate.valueOf();
+
+                        if (toDate > startDate && (toDate < endDate || !element.endDate))
+                            totalValue = totalValue + element.price;
+                    });
+                    console.log(totalValue);
+                    var outPutData = {
+                        "output": {
+                            totalValue
+                        }
+                    };
+
+                    xhttp.open('POST', "https://http-hunt.thoughtworks-labs.net/challenge/output", true);
+                    xhttp.setRequestHeader("userId", "V0JhH4HUn");
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(outPutData));
+                }
+            };
+            xhttp.open('GET', "https://http-hunt.thoughtworks-labs.net/challenge/input", true);
+            xhttp.setRequestHeader("userId", "V0JhH4HUn");
+            xhttp.send();
+        }
+
+        function twChallangeInput3() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var resData = this.responseText;
+
+                    var now = new Date();
+                    var toDate = now.valueOf();
+                    var output = {};
+                    JSON.parse(resData).forEach(function(element) {
+
+                        var sDate = new Date(element.startDate);
+                        var startDate = sDate.valueOf();
+
+                        var eDate = new Date(element.endDate);
+                        var endDate = eDate.valueOf();
+
+                        if (toDate > startDate && (toDate < endDate || !element.endDate))
+                            if (output[element.category])
+                                output[element.category] = output[element.category] + 1;
+                            else output[element.category] = 1;
+                    });
+                    var outPutData = {
+                        output
+                    };
+
+                    xhttp.open('POST', "https://http-hunt.thoughtworks-labs.net/challenge/output", true);
+                    xhttp.setRequestHeader("userId", "V0JhH4HUn");
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(outPutData));
+                }
+            };
+            xhttp.open('GET', "https://http-hunt.thoughtworks-labs.net/challenge/input", true);
+            xhttp.setRequestHeader("userId", "V0JhH4HUn");
+            xhttp.send();
+        }
+
+        function twChallangeInput2() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var resData = this.responseText;
+
+                    var now = new Date();
+                    var toDate = now.valueOf();
+                    var output = {};
+                    var active = 0;
+                    JSON.parse(resData).forEach(function(element) {
+
+                        var sDate = new Date(element.startDate);
+                        var startDate = sDate.valueOf();
+
+                        var eDate = new Date(element.endDate);
+                        var endDate = eDate.valueOf();
+
+                        if (toDate > startDate && (toDate < endDate || !element.endDate))
+                            active++;
+
+                    });
+                    var outPutData = {
+                        output: active
+                    };
+
+                    xhttp.open('POST', "https://http-hunt.thoughtworks-labs.net/challenge/output", true);
+                    xhttp.setRequestHeader("userId", "V0JhH4HUn");
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(outPutData));
+                }
+            };
+            xhttp.open('GET', "https://http-hunt.thoughtworks-labs.net/challenge/input", true);
+            xhttp.setRequestHeader("userId", "V0JhH4HUn");
+            xhttp.send();
+        }
+
+        function twChallangeInput1() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var resData = this.responseText;
+                    var active = 0;
+                    JSON.parse(resData).forEach(function(element) {
+                        active++;
+                    });
+                    var outPutData = {
+                        output: active
+                    };
+
+                    xhttp.open('POST', "https://http-hunt.thoughtworks-labs.net/challenge/output", true);
+                    xhttp.setRequestHeader("userId", "V0JhH4HUn");
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    xhttp.send(JSON.stringify(outPutData));
+                }
+            };
+            xhttp.open('GET', "https://http-hunt.thoughtworks-labs.net/challenge/input", true);
+            xhttp.setRequestHeader("userId", "V0JhH4HUn");
+            xhttp.send();
+        }
+        twChallangeInput4();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
